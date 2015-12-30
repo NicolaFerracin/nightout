@@ -1,4 +1,4 @@
-var Thing = require('./models/thing');  // load the thing mongoose model - change as needed
+var Bar = require('./models/bar');  // load the Bar mongoose model
 var User = require('./models/user');  // load the User mongoose model for passport.js authentication
 
 module.exports = function(app, passport, Yelp) {
@@ -12,10 +12,10 @@ module.exports = function(app, passport, Yelp) {
 	});
 
 	// api ---------------------------------------------------------------------
-	// yelp search
+	// yelp search by latitude and longitude
 	app.get('/api/yelp/:lat/:lon', function(req, res) {
 		// See http://www.yelp.com/developers/documentation/v2/search_api
-		yelp.search({ term: 'bar', ll: req.params.lat + "," + req.params.lon })
+		yelp.search({ term: 'bar', ll: req.params.lat + "," + req.params.lon})
 		.then(function (data) {
 			res.json(data);
 		})
@@ -24,22 +24,23 @@ module.exports = function(app, passport, Yelp) {
 		});
 	});
 
-	// create thing
-	app.post('/api/things', function(req, res) {
-		Thing.create({
-			//		question : req.body.question,
-			//		answers : req.body.answers,
-			//		author : req.body.author
-		}, function(err, thing) {
+
+	// create bar entry and add the yelp_id of the bar to the user going
+	app.post('/api/bar', function(req, res) {
+		Bar.create({
+			yelp_id : req.body.id,
+			going : req.body.going,
+		}, function(err, bar) {
 			if (err) {
 				res.send(err);
 			}
-			res.json(thing);
+			res.json(bar);
 		});
-	});
 
+	});
+ /**
 	// get all things
-	app.get('/api/things', function(req, res) {
+	app.get('/api/bar', function(req, res) {
 		// use mongoose to get all polls from the db
 		Thing.find(function(err, things) {
 			// if err, send it
@@ -62,33 +63,35 @@ module.exports = function(app, passport, Yelp) {
 		});
 	});
 
-	// get thing by id
-	app.get('/api/thing/:id', function(req, res) {
+	*/
+
+	// get bar by id
+	app.get('/api/bar/:id', function(req, res) {
 		// use mongoose to find the thing by id requested
-		Thing.findById(req.params.id, function(err, thing) {
+		Bar.findById(req.params.id, function(err, bar) {
 			if(err) {
 				res.send(err);
 			}
-			res.json(thing);
+			res.json(bar);
 		});
 	});
 
-	// update a thing
-	app.post('/api/things/:id', function(req, res) {
-		Thing.findById(req.body._id, function(err, thing) {
+	// update a bar
+	app.post('/api/bar/:id', function(req, res) {
+		Bar.findById(req.body._id, function(err, bar) {
 			if(err) {
 				res.send(err);
 			}
-			//	poll.answers = req.body.answers;
-			//	poll.votes = req.body.votes;
-			thing.save(function (err) {
+			bar.going = req.body.going;
+			bar.save(function (err) {
 				if (err) {
 					res.send(err);
 				}
-				res.json(thing);
+				res.json(bar);
 			});
 		});
 	});
+	/*
 
 	// delete a thing
 	app.delete('/api/things/:id', function(req, res) {
@@ -102,6 +105,7 @@ module.exports = function(app, passport, Yelp) {
 			res.send();
 		});
 	});
+	*/
 
 	// process the login form
 	// Express Route with passport authentication and custom callback

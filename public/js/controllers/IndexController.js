@@ -34,6 +34,7 @@ app.controller('IndexController', ['$scope', '$http', 'User', '$window', functio
     $http.get("/api/yelp/" + User.position.lat + "/" + User.position.lon)
     .success(function (data) {
       console.log(data);
+      $scope.bars = data.businesses;
     })
     .error(function (err) {
       console.log('Error: ' + err);
@@ -44,9 +45,33 @@ app.controller('IndexController', ['$scope', '$http', 'User', '$window', functio
     alert("Geolocation is not supported by this browser.");
   }
 
+  $scope.barSignUp = function(bar) {
+    if (User.email == undefined) {
+      window.location.href = '/login';
+    }
+    else {
+      // sign the user up to the bar
+      $http.post("/api/bar", bar)
+      .success(function (data, status) {
+        console.log('Bar entry created and user attendance registered.');
+      })
+      .error(function (data) {
+        console.log('Error: ' + data);
+      });
+    }
+
+  }
 
 
 
+/*
+- get all bars in the zone
+  - show all bars in the zone
+- if user online -> check if user going to a bar
+  - update view based on step above
+- get all bars with attendants
+  - update view based on step above
+*/
 
 
 }]);
