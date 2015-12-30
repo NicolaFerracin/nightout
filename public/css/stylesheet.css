@@ -1,0 +1,32 @@
+* {
+  color: white;
+}
+/* nav bar */
+.logo {
+  font-size: 200%;
+}
+
+/* body background + shade */
+body  {
+  position:relative;
+  background: #00BCD4 no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  max-width: 100%;
+  height:auto;
+  margin:0 ;
+  background-image: url("/img/bg.jpg");
+}
+
+body:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
