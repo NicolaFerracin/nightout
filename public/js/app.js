@@ -1,11 +1,6 @@
 // angular routing
 var app = angular.module('NightApp', ['ngRoute']);
 
-// User global object to check loggedin status
-app.service('User', function () {
-    return {};
-})
-
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
   .when('/login', {

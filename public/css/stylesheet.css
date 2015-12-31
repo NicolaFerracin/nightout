@@ -90,3 +90,11 @@ body:after {
 #search {
   margin-bottom: 50px;
 }
+
+.list-going {
+  margin-bottom: 50px;
+}
+
+.italic {
+  font-style: italic;
+}

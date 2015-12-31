@@ -1,6 +1,24 @@
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3 home">
     <h1 align="center" class="title">WHERE ARE YOU GOING TONIGHT?</h1>
+
+    <!-- show bars the user is going to -->
+    <div class="list list-going">
+      <!-- image + name + desc + address + button + link -->
+      <div ng-repeat="bar in userBars" class="bar-container">
+        <div ng-show="bar.image_url" class="bar-thumb"><a href="{{bar.url}}" target="new"><img src="{{bar.image_url}}" /></a></div>
+        <div class="bar-content">
+          <a class="bar-title" href="{{bar.url}}" target="new">{{bar.name}}</a>
+          <span class="italic">- Going tonight: 0{{bar.attendants}}</span>
+          <p>{{bar.snippet_text}}</p>
+          <span ng-repeat="address in bar.location.display_address">
+            {{address}}
+          </span>
+          <button id="not-going" class="btn btn-danger" ng-click="barSignOut(bar, $index)">Sign me out</button>
+        </div>
+      </div>
+    </div>
+
     <form>
       <div class="input-group input-group-lg" align="center" id="search">
         <input ng-model="searchString" type="text" class="form-control" placeholder="Search...">
@@ -10,18 +28,19 @@
       </div>
     </form>
 
-    <div id="list">
-      <!-- image + name + desc + address + button + linl -->
+    <!-- show bars based on the search -->
+    <div class="list">
+      <!-- image + name + desc + address + button + link -->
       <div ng-repeat="bar in bars" class="bar-container">
         <div ng-show="bar.image_url" class="bar-thumb"><a href="{{bar.url}}" target="new"><img src="{{bar.image_url}}" /></a></div>
         <div class="bar-content">
           <a class="bar-title" href="{{bar.url}}" target="new">{{bar.name}}</a>
+          <span class="italic">- Going tonight: 0{{bar.attendants}}</span>
           <p>{{bar.snippet_text}}</p>
           <span ng-repeat="address in bar.location.display_address">
             {{address}}
           </span>
-          <button ng-hide="{{bar.userIsAttending}}" id="going" class="btn btn-success" ng-click="barSignUp(bar)">Sign me up!</button>
-          <button ng-show="{{bar.userIsAttending}}" id="not-going" class="btn btn-danger" ng-click="barSignOut(bar)">Sign me out</button>
+          <button id="going" class="btn btn-success" ng-click="barSignUp(bar, $index)">Sign me up!</button>
         </div>
       </div>
     </div>

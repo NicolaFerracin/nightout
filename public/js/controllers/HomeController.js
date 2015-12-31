@@ -1,5 +1,4 @@
-app.controller('HomeController', ['$scope', '$http', 'User', function($scope, $http, User) {
+app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
 
-  $scope.user = User;
 
 }]);

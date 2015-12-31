@@ -5,5 +5,5 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Bar', {
   yelp_id : String,
-  going : Number
+  attendants : Number
 });
