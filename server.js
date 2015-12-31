@@ -23,7 +23,10 @@ app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(session({secret : 'imsuperman'})); // session secret
+app.use(session({secret: 'imsuperman', 
+                 saveUninitialized: true,
+                 resave: true}));
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

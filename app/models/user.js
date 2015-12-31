@@ -4,10 +4,6 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 
-var Bar = {
-	yelp_id : String,
-}
-
 // define the schema for our user model
 var userSchema = mongoose.Schema({
 
@@ -15,7 +11,7 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String,
     },
-		bars : [Bar]
+		bars : []
 });
 
 // methods ======================

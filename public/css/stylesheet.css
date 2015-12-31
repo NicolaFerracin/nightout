@@ -63,6 +63,14 @@ body:after {
   float: right;
 }
 
+.glyphicon-search {
+  color: black;
+}
+
+#not-going {
+  float: right;
+}
+
 /* avoid a links fromatting when showing bars */
 .bar-container a {
   color: inherit;
@@ -77,4 +85,8 @@ body:after {
 .bar-container a:visited {
   color: inherit;
   text-decoration: inherit;
+}
+
+#search {
+  margin-bottom: 50px;
 }
