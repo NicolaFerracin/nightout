@@ -127,7 +127,7 @@ module.exports = function(app, passport, Yelp) {
 		if (req.isAuthenticated()) {
 			var user = req.user;
 			// hide sensible information
-			user.local = {};
+			user.local.password = "";
 			res.json(req.user);
 		}
 		else {

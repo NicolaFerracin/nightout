@@ -9,7 +9,8 @@
         <div ng-show="bar.image_url" class="bar-thumb"><a href="{{bar.url}}" target="new"><img src="{{bar.image_url}}" /></a></div>
         <div class="bar-content">
           <a class="bar-title" href="{{bar.url}}" target="new">{{bar.name}}</a>
-          <span class="italic">- Going tonight: 0{{bar.attendants}}</span>
+          <span ng-show="!bar.attendants" class="italic">- Going tonight: 0</span>
+          <span ng-show="bar.attendants > 0" class="italic">- Going tonight: {{bar.attendants}}</span>
           <p>{{bar.snippet_text}}</p>
           <span ng-repeat="address in bar.location.display_address">
             {{address}}
@@ -35,7 +36,8 @@
         <div ng-show="bar.image_url" class="bar-thumb"><a href="{{bar.url}}" target="new"><img src="{{bar.image_url}}" /></a></div>
         <div class="bar-content">
           <a class="bar-title" href="{{bar.url}}" target="new">{{bar.name}}</a>
-          <span class="italic">- Going tonight: 0{{bar.attendants}}</span>
+          <span ng-show="!bar.attendants" class="italic">- Going tonight: 0</span>
+          <span ng-show="bar.attendants > 0" class="italic">- Going tonight: {{bar.attendants}}</span>
           <p>{{bar.snippet_text}}</p>
           <span ng-repeat="address in bar.location.display_address">
             {{address}}
