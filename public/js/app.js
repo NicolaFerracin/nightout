@@ -12,7 +12,6 @@ app.config(function ($routeProvider, $locationProvider) {
     templateUrl: 'views/signup.html'
   })
   .otherwise({
-    controller: 'HomeController',
     templateUrl: 'views/home.html'
   });
 

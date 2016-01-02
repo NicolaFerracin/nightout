@@ -183,6 +183,9 @@ app.controller('IndexController', ['$scope', '$http', '$window', function($scope
   }
 
   $scope.search = function(searchString) {
+    if (searchString == "") {
+      return;
+    }
     // call to yelp api using user's current location
     $http.get("/api/yelp/" + searchString)
     .success(function (data) {

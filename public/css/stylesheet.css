@@ -1,5 +1,12 @@
+.access {
+  float: right;
+  margin-right: 25px;
+  margin-top: -25px;
+}
+
 .view {
   color: white;
+  margin-top: 50px;
 }
 /* nav bar */
 .logo {
@@ -45,7 +52,6 @@ body:after {
 }
 .bar-thumb {
     float: left;
-
     border: 5px solid #fff;
 }
 .bar-thumb img {
